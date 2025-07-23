@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Syllabus - UofTips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="bms316.css">
+  <style>
+    /* 全局样式 */
+       :root {
+      --primary-color: #1e3765;
+      --secondary-color: #2e86ab;
+      --accent-color: #ffd700;
+      --light-bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-dark: #333333;
+      --text-light: #777777;
+      --success-color: #2ecc71;
+      --border-radius: 12px;
+      --box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    /* 头部样式 */
+
+   header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 33px;
+      font-family: 'Marker Felt', sans-serif;
+      font-weight: bold;
+    }
+
+/*Footer*/
+
+    .footer-section p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+        .footer-section a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .upload-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      nav {
+        display: none;
+      }
+      
+      .page-header h1 {
+        font-size: 28px;
+      }
+    }
+
+    /* 主内容区 */
+    .upload-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    .page-header p {
+      font-size: 18px;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* 上传卡片 */
+    .upload-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .upload-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .upload-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(30, 55, 101, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+    }
+
+    .card-icon i {
+      font-size: 28px;
+      color: var(--primary-color);
+    }
+
+    .card-header h2 {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 头部导航 -->
+  <header>
+    <div class="logo">UofTips</div>
+    <nav>
+      <a class="navbar" href="index.html">Home</a>
+      <a class="navbar" href="course.html">Courses</a>
+      <a class="navbar" href="upload.html">Upload</a>
+      <a class="navbar" href="profile.html">My Profile</a>
+      <a class="navbar" href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <!-- 主内容区 -->
+  <div class="upload-container">
+    <div class="page-header">
+      <h1 style="font-family: Arial narrow; font-size: 50px;">Share Your Course Experience</h1>
+      <p>Help other students by sharing your course syllabi and comments. Your contributions will help make UofTips a valuable resource for the entire UofT community. ❤</p>
+    </div>
+
+    <div class="upload-cards">
+      <!-- 上传教学大纲卡片 -->
+      <div class="upload-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-file-pdf"></i>
+          </div>
+          <h2>Upload Syllabus</h2>
+        </div>
+        
+        <form class="upload-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Course Code <span>*</span></label>
+              <input type="text" placeholder="e.g. BMS316" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Course Name <span>*</span></label>
+              <input type="text" placeholder="e.g. Social Media & Digital Platforms" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Professor</label>
+              <input type="text" placeholder="e.g. Professor Xianwei Wu">
+            </div>
+            
+            <div class="form-group">
+              <label>Term <span>*</span></label>
+              <select required>
+                <option value="">Select Term</option>
+                <option value="fall2023">...</option>
+                <option value="fall2023">Fall 2024</option>
+                <option value="winter2024">Spring 2025</option>
+                <option value="summer2024">Summer 2025</option>
+                <option value="fall2024">Fall 2025</option>
+                <option value="fall2023">...</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Syllabus File (PDF only) <span>*</span></label>
+            <div class="file-upload">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag & drop your syllabus PDF here</p>
+              <p class="small">or</p>
+              <div class="btn">Choose File</div>
+              <input type="file" accept=".pdf" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms1" required>
+              <label for="terms1">I confirm that I have the right to share this syllabus and it does not violate any copyright restrictions.</label>
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-upload"></i> Upload Syllabus
+          </button>
+        </form>
+      </div>
+      
+      <!-- 提交课程评价卡片 -->
+      <div class="upload-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h2>Submit Course Review</h2>
+        </div>
+        
+        <form class="upload-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Course Code <span>*</span></label>
+              <input type="text" placeholder="e.g. BMS316" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Professor</label>
+              <input type="text" placeholder="e.g. Professor Xianwei Wu">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Term <span>*</span></label>
+            <select required>
+              <option value="">Select Term</option>
+              <option value="fall2023">...</option>
+              <option value="fall2023">Fall 2024</option>
+              <option value="winter2024">Spring 2025</option>
+              <option value="summer2024">Summer 2025</option>
+              <option value="fall2024">Fall 2025</option>
+              <option value="fall2023">...</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Overall Rating <span>*</span></label>
+              <div class="rating-container">
+                <div class="rating">
+                  <i class="fas fa-star" data-value="1"></i>
+                  <i class="fas fa-star" data-value="2"></i>
+                  <i class="fas fa-star" data-value="3"></i>
+                  <i class="fas fa-star" data-value="4"></i>
+                  <i class="fas fa-star" data-value="5"></i>
+                </div>
+                <span id="rating-text">Select rating</span>
+              </div>
+              <input type="hidden" id="rating-value" name="rating" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Workload</label>
+              <select>
+                <option value="">Select Workload</option>
+                <option value="light">Light</option>
+                <option value="moderate">Moderate</option>
+                <option value="heavy">Heavy</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Review <span>*</span></label>
+            <textarea placeholder="Share your experience with this course..." required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="anonymous" checked>
+              <label for="anonymous">Post as anonymous</label>
+            </div>
+            
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms2" required>
+              <label for="terms2">I agree to the terms of submitting reviews</label>
+            </div>
+            
+            <div class="terms">
+              <p>Your review should be honest, respectful, and constructive. Avoid personal attacks and inappropriate language.</p>
+              <p>By submitting, you agree to our <a href="#">Community Guidelines</a> and <a href="#">Privacy Policy</a>.</p>
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Submit Review
+          </button>
+        </form>
+      </div>
+    </div><br>
+    
+    <!-- 上传指南 -->
+    <div class="upload-guide">
+      <h2>Upload Guidelines</h2>
+      <div class="guide-list">
+        <div class="guide-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Only upload materials you have permission to share</strong>
+            <p>Ensure you have the right to distribute the syllabus. Do not upload copyrighted materials without permission.</p>
+          </div>
+        </div>
+        
+        <div class="guide-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Use the correct course information</strong>
+            <p>Double-check course codes, names, and professor information to ensure accuracy.</p>
+          </div>
+        </div>
+        
+        <div class="guide-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Keep reviews constructive and respectful</strong>
+            <p>Share your honest experience while maintaining a respectful tone towards professors and fellow students.</p>
+          </div>
+        </div>
+        
+        <div class="guide-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Focus on course content and structure</strong>
+            <p>Provide insights about the syllabus, assignments, exams, and overall course organization.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  
+  <!-- 页脚 -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>UofTips</h4>
+        <p>Providing UofT students with transparent course information since 2025 (Non Official)</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="course.html">Browse Courses</a></p>
+        <p><a href="upload.html">Upload Syllabus</a></p>
+        <p><a href="profile.html">My Profile</a></p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-envelope"></i> uoftips@utoronto.ca</p>
+        <p><i class="fab fa-instagram"></i> @uoftips</p>
+        <p><i class="fab fa-facebook"></i> @UofTipsOfficial</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 UofTips Team. Created by BMS316 Group2 Students ❤️</p>
+      <p>Not officially affiliated with the University of Toronto</p>
+    </div>
+  </footer>
+
+  <script>
+    // 星级评分功能
+    document.querySelectorAll('.rating i').forEach(star => {
+      star.addEventListener('click', function() {
+        const value = this.getAttribute('data-value');
+        const ratingContainer = this.parentElement;
+        const ratingText = document.getElementById('rating-text');
+        const ratingInput = document.getElementById('rating-value');
+        
+        // 设置选中状态
+        ratingContainer.querySelectorAll('i').forEach((s, index) => {
+          if (index < value) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+        
+        // 更新文本和隐藏输入值
+        ratingText.textContent = `${value} star${value > 1 ? 's' : ''}`;
+        ratingInput.value = value;
+      });
+    });
+    
+    // 表单提交处理
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 显示成功消息
+        alert('Thank you for your submission! Your upload will be reviewed and published soon.❤');
+        
+        // 重置表单
+        this.reset();
+        
+        // 重置星级评分
+        document.querySelectorAll('.rating i').forEach(star => {
+          star.classList.remove('active');
+        });
+        document.getElementById('rating-text').textContent = 'Select rating';
+        document.getElementById('rating-value').value = '';
+      });
+    });
+  </script>
+</body>
+</html>

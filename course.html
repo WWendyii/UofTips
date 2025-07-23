@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Courses - UofTips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="bms316.css">
+<style>
+	   /* 课程页面特有样式 */
+	  *{
+	  	font-family: Arial;
+	  }
+    .course-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: rgba(30, 55, 101, 0.18);
+      margin-bottom: 30px;
+    }
+    
+    .course-hero h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    
+    .search-container {
+      max-width: 700px;
+      margin: 30px auto;
+      display: flex;
+    }
+    
+    .search-container input {
+      flex: 1;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 30px 0 0 30px;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .search-container button {
+      padding: 15px 25px;
+      background: #1e3765;
+      color: white;
+      border: none;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    
+    .course-container {
+      display: flex;
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 20px;
+      gap: 30px;
+    }
+    
+    .course-filters {
+      flex: 0 0 280px;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      align-self: flex-start;
+    }
+    
+    .course-filters h3 {
+      margin-top: 0;
+      color: #1e3765;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 20px;
+    }
+    
+    .filter-group {
+      margin-bottom: 25px;
+    }
+    
+    .filter-group h4 {
+      margin-bottom: 10px;
+      color: #444;
+      font-size: 16px;
+    }
+    
+    .filter-group select, 
+    .filter-group input[type="text"],
+    .filter-group input[type="number"] {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    
+    .range-input {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .range-input input {
+      flex: 1;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    
+    .apply-filters, .reset-filters {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .apply-filters {
+      background: #1e3765;
+      color: white;
+    }
+    
+    .reset-filters {
+      background: #f0f0f0;
+      color: #333;
+    }
+    
+    .course-list {
+      flex: 1;
+    }
+    
+    .sort-options {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    
+    .sort-options span {
+      margin-right: 10px;
+      color: #555;
+    }
+    
+    .sort-options select {
+      padding: 8px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: white;
+    }
+    
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 25px;
+    }
+    
+    .course-card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .course-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    
+    .course-header h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+    
+    .course-rating {
+      font-size: 14px;
+    }
+    
+    .stars {
+      color: rgb(241,197,0);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .course-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+    
+    .course-meta div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .course-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .course-actions button {
+      flex: 1;
+      padding: 10px;
+      background: rgba(30, 55, 101, 0.1);
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .course-actions button:hover {
+      background: rgba(30, 55, 101, 0.2);
+    }
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 10px;
+    }
+    
+    .pagination button {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+    .pagination button.active {
+      background: #1e3765;
+      color: white;
+      border-color: #1e3765;
+    }
+    
+    /* 开关样式 */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+    }
+    
+    input:checked + .slider {
+      background-color: #1e3765;
+    }
+    
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    
+    .slider.round {
+      border-radius: 24px;
+    }
+    
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    .footer-section p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+        .footer-section a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+</style>
+
+
+</head>
+<body>
+  <header>
+    <div style="font-size: 33px; font-family: Marker Felt;"><strong>UofTips</strong></div>
+    <nav>
+      <a class="navbar" href="index.html">Home</a>
+      <a class="navbar" href="course.html">Courses</a>
+      <a class="navbar" href="upload.html">Upload</a>
+      <a class="navbar" href="profile.html">My Profile</a>
+      <a class="navbar" href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <div class="course-hero">
+    <h1 style="font-family: Arial narrow; font-size: 50px;">Find Courses You Want</h1><br>
+    <p>Search and filter courses by department, average, difficulty, and more.</p>
+    <div class="search-container">
+      <input type="text" id="course-search" placeholder="Search by course code or name...">
+      <button onclick="window.alert('In real platform it can be searched')"><i class="fas fa-search"></i></button>
+    </div>
+  </div>
+
+  <div class="course-container">
+    <!-- 筛选面板 -->
+    <aside class="course-filters">
+      <h3>Filter Courses</h3>
+      
+      <div class="filter-group">
+        <h4>Department</h4>
+        <select id="department-filter">
+          <option value="">All Programs</option>
+          <option value="computer-science">Computer Science</option>
+          <option value="life-sciences">Economics</option>
+          <option value="humanities">Humanities</option>
+          <option value="social-sciences">Social Sciences</option>
+          <option value="book-media">Book & Media Studies</option>
+          <option value="book-media">Mathematics</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <h4>Average Grade</h4>
+        <div class="range-input">
+          <label for="min-avg">Min:</label>
+          <input type="number" id="min-avg" min="D-" max="A+" placeholder="B">
+          <label for="max-avg">Max:</label>
+          <input type="number" id="max-avg" min="D-" max="A+" placeholder="B">
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Difficulty</h4>
+        <div class="checkbox-group">
+          <label><input type="checkbox" value="easy"> Easy</label>
+          <label><input type="checkbox" value="moderate"> Moderate</label>
+          <label><input type="checkbox" value="difficult"> Difficult</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Workload</h4>
+        <div class="checkbox-group">
+          <label><input type="checkbox" value="light"> Light</label>
+          <label><input type="checkbox" value="moderate"> Moderate</label>
+          <label><input type="checkbox" value="heavy"> Heavy</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Has Syllabus</h4>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <button class="apply-filters" onclick="window.alert('In real platform will contain all programs, and this filter can use')">Apply Filters</button>
+      <button class="reset-filters" onclick="window.alert('In real platform your selection will be reset')">Reset</button>
+    </aside>
+
+    <!-- 课程列表 -->
+    <main class="course-list">
+      <div class="sort-options">
+        <span>Sort by:</span><br>
+        <button style="font-size:10px; " onclick="window.alert('In real platform it can be used')">(P.S.)</button>
+        <select id="sort-by">
+          <option value="avg-desc">Average (A+ to D-)</option>
+          <option value="avg-asc">Average (D- to A+)</option>
+          <option value="difficulty-asc">Difficulty (Easy to Hard)</option>
+          <option value="difficulty-desc">Difficulty (Hard to Easy)</option>
+          <option value="workload-asc">Workload (Light to Heavy)</option>
+          <option value="workload-desc">Workload (Heavy to Light)</option>
+        </select>
+      </div>
+
+      <div class="courses-grid">
+        <!-- 课程卡片示例 -->
+        <div class="course-card">
+          <div class="course-header">
+            <h3>BMS316H1 (2025-7)</h3>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.5 (42 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p>Social Media & Digital Platforms </p>
+          <div class="course-meta">
+            <div><i class="fas fa-building"></i> Book & Media Studies</div>
+            <div><i class="fas fa-chart-bar"></i> Avg: Unknown (Pending) </div>
+            <div><i class="fas fa-tachometer-alt"></i> Difficulty: Moderate</div>
+            <div><i class="fas fa-book"></i> Workload: Moderate</div>
+          </div>
+          <div class="course-actions">
+            <button><i class="far fa-file-pdf"></i><a style="text-decoration: none; color: black;" href="BMS316-Social-Media-syllabus.pdf" data-aos="zoom-in"> Syllabus</a></button>
+            <button onclick="window.alert('In real platform it will show several semesters averages (such as home page bms100 trends).')"><i class="fas fa-chart-line"></i> Trends</button>
+            <button onclick="window.alert('In real platform it can choose another course to compare basic info')"><i class="far fa-star"></i> Compare</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-header">
+            <h3>BMS100H1 (2024-9)</h3>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <span>4.0 (87 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p>Introduction to Book & Media Studies</p>
+          <div class="course-meta">
+            <div><i class="fas fa-building"></i> Book & Media Studies</div>
+            <div><i class="fas fa-chart-bar"></i> Avg: B+ </div>
+            <div><i class="fas fa-tachometer-alt"></i> Difficulty: Moderate</div>
+            <div><i class="fas fa-book"></i> Workload: Moderate</div>
+          </div>
+          <div class="course-actions">
+            <button><i class="far fa-file-pdf"></i><a style="text-decoration: none; color: black;" href="bms100_intro_to_bms_fall2024_syllabus.pdf" data-aos="zoom-in" > Syllabus</a></button>
+            <button onclick="window.alert('In real platform it will show several semesters averages (such as home page bms100 trends).')"><i class="fas fa-chart-line"></i> Trends</button>
+            <button onclick="window.alert('In real platform it can choose another course to compare basic info')"><i class="far fa-star"></i> Compare</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-header">
+            <h3>BMS201H1 (2024-9)</h3>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                <span>3.5 (63 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p>InfoLit, Writing, Research BMS</p>
+          <div class="course-meta">
+            <div><i class="fas fa-building"></i> Book & Media Studies</div>
+            <div><i class="fas fa-chart-bar"></i> Avg: B </div>
+            <div><i class="fas fa-tachometer-alt"></i> Difficulty: Moderate</div>
+            <div><i class="fas fa-book"></i> Workload: Heavy</div>
+          </div>
+          <div class="course-actions">
+            <button><i class="far fa-file-pdf"></i><a style="color: black; text-decoration: none;" href="Syllabus _ BMS 201 _ 2024-FA.pdf"> Syllabus</a></button>
+            <button onclick="window.alert('In real platform it will show several semesters averages (such as home page bms100 trends).')"><i class="fas fa-chart-line"></i> Trends</button>
+            <button onclick="window.alert('In real platform it can choose another course to compare basic info')"><i class="far fa-star"></i> Compare</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-header">
+            <h3>BMS100H1 (2024-7)</h3>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <span>1.5 (56 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p>Intro to Book & Media Studies</p>
+          <div class="course-meta">
+            <div><i class="fas fa-building"></i> Book & Media Studies</div>
+            <div><i class="fas fa-chart-bar"></i> Avg: D+ </div>
+            <div><i class="fas fa-tachometer-alt"></i> Difficulty: Difficult</div>
+            <div><i class="fas fa-book"></i> Workload: Heavy</div>
+          </div>
+          <div class="course-actions">
+            <button onclick="window.alert('In real platform it will show')"><i class="far fa-file-pdf"></i> Syllabus</button>
+            <button onclick="window.alert('In real platform it will show several semesters averages (such as home page bms100 trends).')"><i class="fas fa-chart-line"></i> Trends</button>
+            <button onclick="window.alert('In real platform it can choose another course to compare basic info')"><i class="far fa-star"></i> Compare</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-header">
+            <h3>BMS320H1 (2025-5)</h3>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                <span>3.5 (22 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p>Media and Trauma</p>
+          <div class="course-meta">
+            <div><i class="fas fa-building"></i> Book & Media Studies</div>
+            <div><i class="fas fa-chart-bar"></i> Avg: B- </div>
+            <div><i class="fas fa-tachometer-alt"></i> Difficulty: Moderate</div>
+            <div><i class="fas fa-book"></i> Workload: Light</div>
+          </div>
+          <div class="course-actions">
+            <button><i class="far fa-file-pdf"></i><a style="color:black; text-decoration: none;" href="2025-07-23 03.02.09.png"> Syllabus</a></button>
+            <button onclick="window.alert('In real platform it will show several semesters averages (such as home page bms100 trends).')"><i class="fas fa-chart-line"></i> Trends</button>
+            <button onclick="window.alert('In real platform it can choose another course to compare basic info')"><i class="far fa-star"></i> Compare</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-header">
+            <h3>MAT246H1 (2024-1)</h3>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <span>1.5 (45 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p>Abstract Mathematics</p>
+          <div class="course-meta">
+            <div><i class="fas fa-building"></i> Mathematics</div>
+            <div><i class="fas fa-chart-bar"></i> Avg: C- </div>
+            <div><i class="fas fa-tachometer-alt"></i> Difficulty: difficult</div>
+            <div><i class="fas fa-book"></i> Workload: Heavy</div>
+          </div>
+          <div class="course-actions">
+            <button><i class="far fa-file-pdf"></i><a style="color: black; text-decoration: none;" href="MAT246-Course-Outline.pdf"> Syllabus</a></button>
+            <button onclick="window.alert('In real platform it will show several semesters averages (such as home page bms100 trends).')"><i class="fas fa-chart-line"></i> Trends</button>
+            <button onclick="window.alert('In real platform it can choose another course to compare basic info')"><i class="far fa-star"></i> Compare</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 分页 -->
+      <div class="pagination">
+        <button onclick="window.alert('In real platform it can be used')"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="window.alert('In real platform it will show more')" class="active">1</button>
+        <button onclick="window.alert('In real platform it will show more')">2</button>
+        <button onclick="window.alert('In real platform it will show more')">3</button>
+        <button onclick="window.alert('In real platform it can be used')"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </main>
+  </div>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>UofTips</h4>
+        <p>Providing UofT students with transparent course information since 2025 (Non Official)</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="course.html">Browse Courses</a></p>
+        <p><a href="upload.html">Upload Syllabus</a></p>
+        <p><a href="profile.html">My Profile</a></p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-envelope"></i> uoftips@utoronto.ca</p>
+        <p><i class="fab fa-instagram"></i> @uoftips</p>
+        <p><i class="fab fa-facebook"></i> @UofTipsOfficial</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 UofTips Team. Created by BMS316 Group2 Students ❤️</p>
+      <p>Not officially affiliated with the University of Toronto</p>
+    </div>
+  </footer>
+</body>
+</html>

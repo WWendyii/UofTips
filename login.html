@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - UofTips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="bms316.css">
+
+  <style>
+    :root {
+      --primary: #1e3765;
+      --secondary: #2e86ab;
+      --accent: #ffd700;
+      --light: #f8f9fa;
+      --dark: #333333;
+      --gray: #777777;
+      --light-gray: #e9ecef;
+      --border-radius: 12px;
+      --box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, rgba(30, 55, 101, 0.1) 0%, rgba(46, 134, 171, 0.1) 100%);
+    }
+
+    /* 头部样式 */
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 33px;
+      font-family: 'Marker Felt', sans-serif;
+      font-weight: bold;
+    }
+
+
+
+    /* 主内容区 */
+    .login-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .login-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      width: 100%;
+      max-width: 500px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .login-header {
+      background: linear-gradient(135deg, var(--primary), #0d1a38);
+      color: white;
+      text-align: center;
+      padding: 40px 30px;
+    }
+
+    .login-header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .login-body {
+      padding: 40px;
+    }
+
+    .login-form {
+      display: grid;
+      gap: 25px;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+      font-size: 18px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 15px 15px 15px 50px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.1);
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: -10px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+    }
+
+    .forgot-password {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
+    .login-btn {
+      background: linear-gradient(135deg, var(--primary), #0d1a38);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #ddd;
+    }
+
+    .divider span {
+      padding: 0 15px;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .social-login {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: white;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .social-btn.google {
+      color: #DB4437;
+    }
+
+    .social-btn.facebook {
+      color: #4267B2;
+    }
+
+    .social-btn.apple {
+      color: #333333;
+    }
+
+    .social-btn:hover {
+      background: var(--light-gray);
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--gray);
+    }
+
+    .signup-link a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* 页脚样式 */
+    footer {
+      background: var(--primary);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .footer-bottom {
+      padding-top: 10px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .login-header {
+        padding: 30px 20px;
+      }
+      
+      .login-header h1 {
+        font-size: 28px;
+      }
+      
+      .login-body {
+        padding: 30px 20px;
+      }
+      
+      .remember-forgot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-header {
+        padding: 25px 15px;
+      }
+      
+      .login-header h1 {
+        font-size: 24px;
+      }
+      
+      .login-header p {
+        font-size: 16px;
+      }
+    }
+
+    /* 动画效果 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-card {
+      animation: fadeIn 0.6s ease-out;
+    }
+
+        .footer-section p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+        .footer-section a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- 头部导航 -->
+  <header>
+    <div class="logo">UofTips</div>
+    <nav>
+      <a class="navbar" href="index.html">Home</a>
+      <a class="navbar" href="course.html">Courses</a>
+      <a class="navbar" href="upload.html">Upload</a>
+      <a class="navbar" href="profile.html">My Profile</a>
+    </nav>
+  </header>
+
+  <!-- 登录主内容区 -->
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <h1 style="font-family: Rockwell;">Welcome Back</h1>
+        <p>Sign in to access your personalized dashboard</p>
+      </div>
+      
+      <div class="login-body">
+        <form class="login-form">
+          <div class="form-group">
+            <label for="email">University Email</label>
+            <div class="input-with-icon">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" placeholder="yourname@mail.utoronto.ca" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+          </div>
+          
+          <div class="remember-forgot">
+            <div class="checkbox-group">
+              <input type="checkbox" id="remember">
+              <label for="remember">Remember me</label>
+            </div>
+            <a href="#" class="forgot-password" onclick="window.alert('In real platform it will have a new window to reset password')">Forgot password?</a>
+          </div>
+          
+          <button type="submit" class="login-btn">
+            <i class="fas fa-sign-in-alt"></i> Sign In / Up
+          </button>
+        </form>
+        
+        <div class="divider">
+          <span>Or continue with</span>
+        </div>
+        
+        <div class="social-login">
+          <button class="social-btn google">
+            <i class="fab fa-google"></i> Sign in with Google
+          </button>
+          
+          <button class="social-btn facebook">
+            <i class="fab fa-facebook-f"></i> Sign in with Facebook
+          </button>
+          
+          <button class="social-btn apple">
+            <i class="fab fa-apple"></i> Sign in with Apple
+          </button>
+        </div>
+        
+        <div class="signup-link">
+          <p>Do not have an account? <a href=""  onclick="window.alert('Actually this page can be both sign in & sign up, so it will refresh the page')">Sign up now for free</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 页脚 -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>UofTips</h4>
+        <p>Providing UofT students with transparent course information since 2025 (Non Official)</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="course.html">Browse Courses</a></p>
+        <p><a href="upload.html">Upload Syllabus</a></p>
+        <p><a href="profile.html">My Profile</a></p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-envelope"></i> uoftips@utoronto.ca</p>
+        <p><i class="fab fa-instagram"></i> @uoftips</p>
+        <p><i class="fab fa-facebook"></i> @UofTipsOfficial</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 UofTips Team. Created by BMS316 Group2 Students ❤️</p>
+      <p>Not officially affiliated with the University of Toronto</p>
+    </div>
+  </footer>
+
+  <script>
+    // 表单提交处理
+    document.querySelector('.login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // 获取表单值
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // 这里应该有实际的登录验证逻辑
+      // 这里只是一个模拟示例
+      if(email && password) {
+        // 显示成功消息
+        alert('Login successful! Redirecting to your dashboard...');
+        
+        // 在实际应用中，这里会重定向到用户仪表板
+        setTimeout(() => {
+          window.location.href = 'profile.html';
+        }, 1000);
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+    
+    // 社交媒体登录按钮处理
+    document.querySelectorAll('.social-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const provider = this.classList.contains('google') ? 'Google' : 
+                         this.classList.contains('facebook') ? 'Facebook' : 'Apple';
+        alert(`In a real platform, this will jump to: ${provider} to login`);
+      });
+    });
+  </script>
+</body>
+</html>
